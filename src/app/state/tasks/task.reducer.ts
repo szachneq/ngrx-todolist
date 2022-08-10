@@ -1,13 +1,19 @@
 import * as TaskActions from './task.actions';
-import { Task } from './task.model';
+import { Task, Tasks } from './task.model';
 
 export type Action = TaskActions.All;
 
-const defaultState: Task[] = [];
+const defaultState: Tasks= {
+  list: [],
+  state: 'empty',
+};
 
 let counter: number = 0;
 
-export function taskReducer(state: Task[] = defaultState, action: Action) {
+export function taskReducer(
+  state: Tasks = defaultState,
+  action: Action
+): Tasks {
   switch (action.type) {
     case TaskActions.ADD_TASK:
       const newTask: Task = {
@@ -15,10 +21,16 @@ export function taskReducer(state: Task[] = defaultState, action: Action) {
         id: counter,
       };
       counter += 1;
-      return [...state, newTask];
+      return {
+        ...state,
+        list: [ ...state.list, newTask ],
+      };
 
     case TaskActions.REMOVE_TASK:
-      return state.filter((task) => task.id !== Number(action.payload));
+      return {
+        ...state,
+        list: state.list.filter(task => task.id !== Number(action.payload))
+      }
 
     case TaskActions.RESET_TASKS:
       counter = 0;

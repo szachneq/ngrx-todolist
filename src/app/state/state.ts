@@ -1,5 +1,5 @@
-import { Task } from './tasks';
+import { Tasks } from './tasks';
 
 export interface AppState {
-  tasks: Task[];
+  tasks: Tasks;
 }

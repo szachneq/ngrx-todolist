@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
-import { Task } from './state/tasks/task.model';
+import { Tasks } from './state/tasks/task.model';
 import * as TaskActions from './state/tasks/task.actions';
 import { AppState } from './state/state';
 
@@ -13,7 +13,7 @@ import { AppState } from './state/state';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  tasks$: Observable<Task[]>;
+  tasks$: Observable<Tasks>;
   inputValue: string = '';
 
   constructor(private store: Store<AppState>) {
