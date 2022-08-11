@@ -20,17 +20,21 @@ export class AppComponent {
     this.tasks$ = this.store.select('tasks');
   }
 
+  getTasks() {
+    this.store.dispatch(TaskActions.getTasks());
+  }
+
   addTask() {
     if (this.inputValue.trim().length < 1) return;
-    this.store.dispatch(new TaskActions.AddTask(this.inputValue));
+    this.store.dispatch(TaskActions.addTask({ name: this.inputValue }));
     this.inputValue = '';
   }
 
-  removeTask(taskId: number) {
-    this.store.dispatch(new TaskActions.RemoveTask(taskId));
+  removeTask(id: number) {
+    this.store.dispatch(TaskActions.removeTask({ id }));
   }
 
   resetTasks() {
-    this.store.dispatch(new TaskActions.Reset());
+    this.store.dispatch(TaskActions.reset());
   }
 }

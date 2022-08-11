@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { taskReducer } from './state/tasks/task.reducer';
 
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
     StoreModule.forRoot({ tasks: taskReducer }),
+    HttpClientModule,
   ],
   declarations: [AppComponent],
   bootstrap: [AppComponent],

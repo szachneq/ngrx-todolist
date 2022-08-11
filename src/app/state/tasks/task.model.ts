@@ -1,6 +1,6 @@
 export interface Tasks {
   list: Task[];
-  state: 'empty' | 'loading' | 'loaded' | 'failure';
+  state: 'initial' | 'loading' | 'loaded' | 'failure';
 }
 
 export interface Task {

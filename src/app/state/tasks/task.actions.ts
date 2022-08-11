@@ -1,23 +1,14 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 
-export const ADD_TASK = '[Task] Add';
-export const REMOVE_TASK = '[Task] Remove';
-export const RESET_TASKS = '[Task] Reset';
-
-export class AddTask implements Action {
-  readonly type = ADD_TASK;
-
-  constructor(public payload: string) {}
-}
-
-export class RemoveTask implements Action {
-  readonly type = REMOVE_TASK;
-
-  constructor(public payload: number) {}
-}
-
-export class Reset implements Action {
-  readonly type = RESET_TASKS;
-}
-
-export type All = AddTask | RemoveTask | Reset;
+export const getTasks = createAction('[Tasks] Get');
+export const getTasksSuccess = createAction(
+  '[Tasks] Get success',
+  props<{ names: string[] }>()
+);
+export const getTasksFailure = createAction('[Tasks] Get failure');
+export const addTask = createAction('[Tasks] Add', props<{ name: string }>());
+export const removeTask = createAction(
+  '[Tasks] Remove',
+  props<{ id: number }>()
+);
+export const reset = createAction('[Tasks] Reset');

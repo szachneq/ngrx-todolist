@@ -1,42 +1,61 @@
+import { createReducer, on } from '@ngrx/store';
+
 import * as TaskActions from './task.actions';
 import { Task, Tasks } from './task.model';
 
-export type Action = TaskActions.All;
-
-const defaultState: Tasks= {
+const defaultState: Tasks = {
   list: [],
-  state: 'empty',
+  state: 'initial',
 };
 
 let counter: number = 0;
 
-export function taskReducer(
-  state: Tasks = defaultState,
-  action: Action
-): Tasks {
-  switch (action.type) {
-    case TaskActions.ADD_TASK:
-      const newTask: Task = {
-        name: action.payload.toString(),
+export const taskReducer = createReducer(
+  defaultState,
+  on(TaskActions.getTasks, (state) => {
+    console.log('get tasks action triggered');
+    return {
+      ...state,
+      state: 'loading',
+    };
+  }),
+  on(TaskActions.getTasksSuccess, (state, { names }) => {
+    console.log('get tasks success action triggered');
+    const newTasks = names.map((name) => {
+      const newTask = {
         id: counter,
+        name,
       };
       counter += 1;
-      return {
-        ...state,
-        list: [ ...state.list, newTask ],
-      };
-
-    case TaskActions.REMOVE_TASK:
-      return {
-        ...state,
-        list: state.list.filter(task => task.id !== Number(action.payload))
-      }
-
-    case TaskActions.RESET_TASKS:
-      counter = 0;
-      return defaultState;
-
-    default:
-      return state;
-  }
-}
+      return newTask;
+    });
+    return {
+      ...state,
+      state: 'loaded',
+      list: [...state.list, ...newTasks],
+    };
+  }),
+  on(TaskActions.getTasksFailure, (state) => ({
+    ...state,
+    state: 'failure',
+  })),
+  on(TaskActions.addTask, (state, { name }) => {
+    const newTask: Task = {
+      name,
+      id: counter,
+    };
+    counter += 1;
+    return {
+      ...state,
+      list: [...state.list, newTask],
+    };
+  }),
+  on(TaskActions.removeTask, (state, { id }) => ({
+    ...state,
+    list: state.list.filter((task) => task.id !== id),
+  })),
+  on(TaskActions.reset, (state) => {
+    counter = 0;
+    return defaultState;
+  })
+);
