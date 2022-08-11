@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
@@ -9,6 +10,7 @@ import { TaskEffects } from './tasks/task.effects';
 
 @NgModule({
   imports: [
+    HttpClientModule,
     // Signature matches AppState interface
     StoreModule.forRoot({
       tasks: taskReducer,

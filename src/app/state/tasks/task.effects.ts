@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
 
-import { Observable, take, of } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { catchError, delay, map, switchMap } from 'rxjs/operators';
 
 import * as taskActions from './task.actions';
@@ -20,25 +20,23 @@ export class TaskEffects {
           map((taskNames) => taskActions.getTasksSuccess({ names: taskNames }))
         )
       ),
-      catchError(() => [taskActions.getTasksFailure()])
+      catchError((error) => {
+        console.error(error);
+        return of(taskActions.getTasksFailure());
+      })
     )
   );
 
   // should be moved to a separate service, here for now
   getTasksFromApi(): Observable<string[]> {
-    console.log('api call');
-    return of(['ala', 'ma', 'kota']);
-    // interface taskResponse {
-    //   title: string;
-    // }
-    // const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
-    // return this.http.get<taskResponse[]>(apiUrl).pipe(
-    //   take(5),
-    //   map((tasks) => {
-    //     console.log(tasks);
-    //     return tasks.map((t) => t.title);
-    //   })
-    //   // delay(2500)
-    // );
+    interface taskResponse {
+      title: string;
+    }
+    const apiUrl = 'https://jsonplaceholder.typicode.com/todos';
+    return this.http.get<taskResponse[]>(apiUrl).pipe(
+      map((tasks) => tasks.slice(0, 5)),
+      map((tasks) => tasks.map((t) => t.title)),
+      delay(2500)
+    );
   }
 }

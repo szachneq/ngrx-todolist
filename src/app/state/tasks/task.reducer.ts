@@ -12,15 +12,11 @@ let counter: number = 0;
 
 export const taskReducer = createReducer(
   defaultState,
-  on(TaskActions.getTasks, (state) => {
-    console.log('get tasks action triggered');
-    return {
-      ...state,
-      state: 'loading',
-    };
-  }),
+  on(TaskActions.getTasks, (state) => ({
+    ...state,
+    state: 'loading',
+  })),
   on(TaskActions.getTasksSuccess, (state, { names }) => {
-    console.log('get tasks success action triggered');
     const newTasks = names.map((name) => {
       const newTask = {
         id: counter,
