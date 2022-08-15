@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="68eadb2475e94dabd357539a73ffa4fd4b75573e" datatype="html">
+        <source>ToDo List</source>
+        <target>Lista zadań</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa4d9d5a4b602630ce468f2b7b5ce6372151e770" datatype="html">
+        <source>State: <x id="INTERPOLATION" equiv-text="{{ (tasks$ | async).state }}"/></source>
+        <target>Stan: </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c2a2eb11ff8fe227bab4661525326f1c0d9ed0af" datatype="html">
+        <source>Add task</source>
+        <target>Dodaj zadanie</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06ac2336f32072193d73a357b485cc9a3d4959e7" datatype="html">
+        <source>Add task to see the list</source>
+        <target>Dodaj zadania aby zobaczyć listę</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06c663bf1474713f57551123a46b34318543b67d" datatype="html">
+        <source>Reset</source>
+        <target>Reset</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="98d43662b99b83a839fab7646c423f984ea84e7e" datatype="html">
+        <source>Load tasks</source>
+        <target>Załaduj zadania</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

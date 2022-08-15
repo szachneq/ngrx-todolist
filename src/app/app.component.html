@@ -1,11 +1,11 @@
-<h1>Todo</h1>
+<h1 i18n>{{ appName }}</h1>
 
-<p>state: {{ (tasks$ | async).state }}</p>
+<p i18n>State: {{ (tasks$ | async).state }}</p>
 
 <input [(ngModel)]="inputValue" />
-<button (click)="addTask()">Dodaj</button>
+<button (click)="addTask()" i18n>Add task</button>
 
-<p *ngIf="(tasks$ | async).list.length < 1">Dodaj zadania aby zobaczyć listę</p>
+<p *ngIf="(tasks$ | async).list.length < 1" i18n>Add task to see the list</p>
 
 <ul>
   <li *ngFor="let task of (tasks$ | async).list">
@@ -14,5 +14,5 @@
   </li>
 </ul>
 
-<button (click)="resetTasks()">Reset</button>
-<button (click)="getTasks()">Załaduj</button>
+<button (click)="resetTasks()" i18n>Reset</button>
+<button (click)="getTasks()" i18n>Load tasks</button>
